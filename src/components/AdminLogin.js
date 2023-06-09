@@ -31,8 +31,7 @@ export default function AdminLogin() {
           setIsLoading(false);
           sessionStorage.setItem("admin_token", response?.data?.access_token);
           sessionStorage.setItem("admin_name", response?.data?.admin_name);
-          navigate("/dashboard");
-          console.log("success");
+          navigate("/admin-dashboard");
         })
         .catch((error) => {
           setIsLoading(false);
@@ -62,13 +61,31 @@ export default function AdminLogin() {
           </div>
           <form className="px-lg-5 col-lg-10" onSubmit={formik.handleSubmit}>
             <div className="mt-3">
-              <Input type="email" label="Email:" id="email_id" iconLeft="fa-solid fa-envelope" handleChange={formik.handleChange} value={formik.values.email_id} name="email_id"></Input>
+              <Input
+                type="email"
+                label="Email:"
+                id="email_id"
+                iconLeft="fa-solid fa-envelope"
+                handleChange={formik.handleChange}
+                value={formik.values.email_id}
+                name="email_id"
+              ></Input>
               {formik.errors.email_id && formik.touched.email_id && (
                 <small className="text-danger">{formik.errors.email_id}</small>
               )}
             </div>
             <div className="mt-2">
-              <Input type="password" label="Password:" id="password" iconLeft="fa-solid fa-lock" iconRight="fa-solid fa-eye" iconRightAlter="fa-solid fa-eye-slash" handleChange={formik.handleChange} value={formik.values.password} name="password"></Input>
+              <Input
+                type="password"
+                label="Password:"
+                id="password"
+                iconLeft="fa-solid fa-lock"
+                iconRight="fa-solid fa-eye"
+                iconRightAlter="fa-solid fa-eye-slash"
+                handleChange={formik.handleChange}
+                value={formik.values.password}
+                name="password"
+              ></Input>
               {formik.errors.password && formik.touched.password && (
                 <small className="text-danger">{formik.errors.password}</small>
               )}
@@ -95,7 +112,11 @@ export default function AdminLogin() {
         </div>
       </div>
       <div className="col d-md-block d-none">
-        <img style={{ height: "100%", width: "100%", objectFit: "cover" }} src={process.env.PUBLIC_URL + "/images/admin-login-img-red.jpg"} alt="admin login"/>
+        <img
+          style={{ height: "100%", width: "100%", objectFit: "cover" }}
+          src={process.env.PUBLIC_URL + "/images/admin-login-img-red.jpg"}
+          alt="admin login"
+        />
       </div>
     </div>
   );
