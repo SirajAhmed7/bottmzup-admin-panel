@@ -27,3 +27,39 @@ input::-webkit-inner-spin-button {
   -webkit-appearance: none;
   margin: 0;
 }
+
+.sidebar-nav {
+  height: 100vh;
+}
+
+.menu {
+  display: none;
+}
+
+.tab-list {
+  background: #141728;
+  transition: transform 0.2s ease-out;
+}
+
+@media (min-width: 768px) {
+  .tab-list {
+    transform: translateY(0) !important;
+  }
+}
+
+@media (max-width: 768px) {
+  .menu {
+    display: block;
+  }
+
+  .sidebar-nav {
+    height: 80px;
+    position: relative;
+  }
+
+  .tab-list {
+    transform: translateY(-100%);
+    position: relative;
+    z-index: -1;
+  }
+}
