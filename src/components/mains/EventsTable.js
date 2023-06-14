@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import axios from "axios";
 import { useState } from "react";
+import EventsRow from "./EventsRow";
 
 // const allEventsArr = [
 //   {
@@ -50,6 +51,7 @@ function EventsTable() {
   // Add column name here and it will be added in the table
   const columns = [
     "Sr no.",
+    "Action",
     "Event Name",
     "Event venue",
     "Day",
@@ -59,17 +61,13 @@ function EventsTable() {
     "Price range",
   ];
 
-  const objString = (str) => str.toLowerCase().split(" ").join("_");
-  // const cols = columns.map((col) => objString(col));
-  // console.log(cols);
-
   return (
     <div className="m-5 pb-0 table-div">
       <table class="table">
         <thead class="table-dark rounded-3">
           <tr>
             {columns.map((col, i) => (
-              <th scope="col" key={i}>
+              <th scope="col" className="text-truncate" key={i}>
                 {col}
               </th>
             ))}
@@ -77,19 +75,7 @@ function EventsTable() {
         </thead>
         <tbody>
           {allEvents.map((evnt, i) => (
-            <tr key={evnt.id}>
-              <th scope="row">{i + 1}</th>
-              {columns.map((col, i) => {
-                if (i === 0) return null;
-                return (
-                  <td className="text-truncate">
-                    {(col === "Date" &&
-                      new Date(evnt.date).toDateString().slice(4)) ||
-                      evnt[objString(col)]}
-                  </td>
-                );
-              })}
-            </tr>
+            <EventsRow evnt={evnt} i={i} key={evnt.id} columns={columns} />
           ))}
         </tbody>
       </table>
