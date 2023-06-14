@@ -1,4 +1,4 @@
-import TabsList from "./TabsList";
+import TabsList from "../common/TabsList";
 import { useRef } from "react";
 
 function Sidebar() {
@@ -6,10 +6,10 @@ function Sidebar() {
 
   return (
     <nav
-      className="col-lg-3 col-md-3 sidebar-nav"
+      className="col-lg-3 col-md-3 sidebar-nav p-0"
       style={{ background: "#141728" }}
     >
-      <div className="d-flex align-items-center justify-content-between">
+      <div className="d-flex align-items-center justify-content-between nav-header">
         <h3 className="primary-header mb-0 px-lg-4 px-3 py-2 text-white mb-3 pt-4">
           BottmzUP
         </h3>

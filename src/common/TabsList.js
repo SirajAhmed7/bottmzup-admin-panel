@@ -1,5 +1,5 @@
 import { useState } from "react";
-import Tab from "../common/Tab";
+import Tab from "./Tab";
 import { forwardRef } from "react";
 import { useImperativeHandle } from "react";
 

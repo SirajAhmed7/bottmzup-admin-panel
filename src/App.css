@@ -36,18 +36,37 @@ input::-webkit-inner-spin-button {
   display: none;
 }
 
+.nav-header {
+  background: #141728;
+  position: relative;
+  z-index: 2;
+}
+
 .tab-list {
   background: #141728;
   transition: transform 0.2s ease-out;
 }
 
-@media (min-width: 768px) {
+.table-div {
+  max-width: 100%;
+  overflow: scroll;
+}
+
+/* .table-div::-webkit-scrollbar:horizontal {
+  background-color: aqua;
+} */
+
+/* .table {
+  min-width: 1440px;
+} */
+
+@media (min-width: 767px) {
   .tab-list {
     transform: translateY(0) !important;
   }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 767px) {
   .menu {
     display: block;
   }
@@ -60,6 +79,5 @@ input::-webkit-inner-spin-button {
   .tab-list {
     transform: translateY(-100%);
     position: relative;
-    z-index: -1;
   }
 }
