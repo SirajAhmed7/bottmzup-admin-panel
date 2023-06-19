@@ -51,23 +51,22 @@ function EventsTable() {
   // Add column name here and it will be added in the table
   const columns = [
     "Sr no.",
-    "Action",
     "Event Name",
     "Event venue",
     "Day",
     "Date",
     "Timings",
-    "Genre",
     "Price range",
+    "Action",
   ];
 
   return (
-    <div className="m-5 pb-0 table-div">
+    <div className="m-5 pb-0 table-div table-responsive">
       <table class="table">
         <thead class="table-dark rounded-3">
           <tr>
             {columns.map((col, i) => (
-              <th scope="col" className="text-truncate" key={i}>
+              <th scope="col" key={i}>
                 {col}
               </th>
             ))}

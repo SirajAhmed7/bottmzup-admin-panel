@@ -15,7 +15,7 @@ function EventsRow({ evnt, i, columns }) {
       {columns.map((col, i) => {
         if (i === 0) return null;
 
-        if (i === 1) {
+        if (i === 7) {
           return (
             <select
               value={action}
@@ -37,7 +37,7 @@ function EventsRow({ evnt, i, columns }) {
         }
 
         return (
-          <td className="text-truncate">
+          <td>
             {(col === "Date" && new Date(evnt.date).toDateString().slice(4)) ||
               evnt[objString(col)]}
           </td>

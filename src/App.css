@@ -49,7 +49,6 @@ input::-webkit-inner-spin-button {
 
 .table-div {
   max-width: 100%;
-  overflow: scroll;
 }
 
 /* .table-div::-webkit-scrollbar:horizontal {
