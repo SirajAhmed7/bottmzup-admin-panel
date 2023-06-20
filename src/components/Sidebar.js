@@ -6,7 +6,7 @@ function Sidebar() {
 
   return (
     <nav
-      className="col-lg-3 col-md-3 sidebar-nav p-0"
+      className="col-lg-3 col-md-3 sidebar-nav p-0 sticky-top"
       style={{ background: "#141728" }}
     >
       <div className="d-flex align-items-center justify-content-between nav-header">

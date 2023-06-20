@@ -59,6 +59,17 @@ input::-webkit-inner-spin-button {
   min-width: 1440px;
 } */
 
+.table-options {
+  cursor: pointer;
+}
+
+.event-options {
+  z-index: 100;
+  top: 0;
+  left: 0;
+  transform: translateX(-100%);
+}
+
 @media (min-width: 767px) {
   .tab-list {
     transform: translateY(0) !important;
