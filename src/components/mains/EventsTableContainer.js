@@ -119,7 +119,7 @@ function EventsTableContainer() {
               flexGrow={1}
               key={column}
               // sortable={true}
-              width={100}
+              // width={100}
             >
               <Table.HeaderCell
                 style={{
