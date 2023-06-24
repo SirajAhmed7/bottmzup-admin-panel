@@ -16,6 +16,7 @@
     "react-qr-scanner": "^1.0.0-alpha.11",
     "react-router-dom": "^6.11.2",
     "react-scripts": "^5.0.1",
+    "rsuite": "^5.35.1",
     "web-vitals": "^2.1.4",
     "yup": "^1.2.0"
   },

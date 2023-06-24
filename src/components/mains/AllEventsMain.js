@@ -1,11 +1,11 @@
 import Header from "../../common/Header";
-import EventsTable from "./EventsTable";
+import EventsTableContainer from "./EventsTableContainer";
 
 function AllEventsMain() {
   return (
     <main className="col-md-9 p-0 max-vh-100 overflow-auto">
       <Header heading={"All Events"} />
-      <EventsTable />
+      <EventsTableContainer />
     </main>
   );
 }

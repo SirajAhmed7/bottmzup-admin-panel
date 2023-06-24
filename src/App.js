@@ -10,16 +10,27 @@ import AdminDashboard from "./components/AdminDashboard";
 import AdminAllEvents from "./components/AdminAllEvents";
 import AdminAllPromoters from "./components/AdminAllPromoters";
 import AdminPayments from "./components/AdminPayments";
+import { useState } from "react";
 
 function App() {
+  const [access_token, setAccessToken] = useState("");
+
   return (
     <>
       <Router>
         <Routes>
           <Route exact path="/" element={<Navigate to="/admin-login" />} />
-          <Route exact path="/admin-login" element={<AdminLogin />} />
+          <Route
+            exact
+            path="/admin-login"
+            element={<AdminLogin onLogin={setAccessToken} />}
+          />
           <Route exact path="/admin-dashboard" element={<AdminDashboard />} />
-          <Route exact path="/admin-all-events" element={<AdminAllEvents />} />
+          <Route
+            exact
+            path="/admin-all-events"
+            element={<AdminAllEvents accessToken={access_token} />}
+          />
           <Route
             exact
             path="/admin-all-promoters"
