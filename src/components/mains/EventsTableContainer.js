@@ -3,38 +3,16 @@ import axios from "axios";
 import { useState } from "react";
 import { Table } from "rsuite";
 import startCase from "lodash/startCase";
-
-// const allEventsArr = [
-//   {
-//     timings: "08:00 PM - 01:30 AM",
-//     created_by: 10,
-//     id: 34,
-//     genre: "Bollywood, Commercial",
-//     updated_by: null,
-//     event_name: "GLITZ AND GAMOUR LADIES NIGHT",
-//     price_range: "Free - Rs.2000",
-//     updated_at: null,
-//     event_venue: "Veleno, Andheri West, Mumbai",
-//     description:
-//       "Greetings from Club Veleno. You all are invited to GLITZ AND GAMOUR LADIES NIGHT. Connect with fellow music enthusiasts, and experience the vibrant spirit of the subcontinent in the most exhilarating way possible.",
-//     status: "Approved",
-//     images_url:
-//       "https://storage.googleapis.com/nightlife---22.appspot.com/events/WhatsApp%20Image%202023-06-12%20at%2020.24.15.jpeg",
-//     featuring: "DJ REE X DJ DIPESH",
-//     contact: 9321226695,
-//     curated_by: "Veleno",
-//     carousel: null,
-//     day: "Wednesday",
-//     terms: "{}",
-//     date: "2023-06-14",
-//     created_at: "2023-06-13T03:11:57.076652",
-//   },
-// ];
+import Search from "./Search";
 
 function EventsTableContainer() {
   const [allEvents, setAllEvents] = useState([]);
   const [columns, setColumns] = useState([]);
+  const [sortColumn, setSortColumn] = useState();
+  const [sortType, setSortType] = useState();
   const [loading, setLoading] = useState(true);
+  // const [data, setData] = useState([]);
+  const [searchText, setSearchText] = useState("");
 
   const accessToken = sessionStorage.getItem("admin_token");
 
@@ -47,9 +25,10 @@ function EventsTableContainer() {
   useEffect(() => {
     events()
       .then((response) => {
-        console.log(response?.data);
+        // console.log(response?.data);
         setAllEvents(response?.data);
         const keys = Object.keys(response?.data[0]);
+        // setData(response?.data);
         setColumns(keys.map((key) => key));
         setTimeout(() => {
           setLoading(false);
@@ -60,38 +39,43 @@ function EventsTableContainer() {
       });
   }, []);
 
-  // Add column name here and it will be added in the table
-  // const columns = [
-  //   "Sr no.",
-  //   "Event Name",
-  //   "Event venue",
-  //   "Day",
-  //   "Date",
-  //   "Timings",
-  //   "Price range",
-  //   "Action",
-  // ];
+  const getSortData = () => {
+    if (sortColumn && sortType) {
+      return allEvents.sort((a, b) => {
+        let x = a[sortColumn];
+        let y = b[sortColumn];
+        if (sortColumn === "date") {
+          if (sortType === "asc") {
+            return x > y ? 1 : x < y ? -1 : 0;
+          } else {
+            return x < y ? 1 : x > y ? -1 : 0;
+          }
+        }
+        if (typeof x === "string") {
+          x = x.charCodeAt();
+        }
+        if (typeof y === "string") {
+          y = y.charCodeAt();
+        }
+        if (sortType === "asc") {
+          return x - y;
+        } else {
+          return y - x;
+        }
+      });
+    }
+    return allEvents;
+  };
 
-  // return (
-  //   <div className="m-5 pb-0 table-div table-responsive">
-  //     <table class="table">
-  //       <thead class="table-dark rounded-3">
-  //         <tr>
-  //           {columns.map((col, i) => (
-  //             <th scope="col" key={i}>
-  //               {col}
-  //             </th>
-  //           ))}
-  //         </tr>
-  //       </thead>
-  //       <tbody>
-  //         {allEvents.map((evnt, i) => (
-  //           <EventsRow evnt={evnt} i={i} key={evnt.id} columns={columns} />
-  //         ))}
-  //       </tbody>
-  //     </table>
-  //   </div>
-  // );
+  const handleSortColumn = (sortColumn, sortType) => {
+    setLoading(true);
+    setTimeout(() => {
+      setLoading(false);
+      setSortColumn(sortColumn);
+      setSortType(sortType);
+    }, 500);
+  };
+
   const noColumns = [
     "id",
     "description",
@@ -109,17 +93,51 @@ function EventsTableContainer() {
     "status",
   ];
 
+  function handleSearch(e) {
+    setSearchText(e.target.value);
+  }
+
+  function getData(func) {
+    if (func === "search") {
+      if (searchText) {
+        return allEvents.filter((event) =>
+          event.event_name.toLowerCase().startsWith(searchText.toLowerCase())
+        );
+      } else {
+        return allEvents;
+      }
+    }
+
+    return getSortData();
+  }
+
   return (
-    <div className="m-5 pb-0 table-div table-responsive">
-      <Table height={300} data={allEvents} loading={loading}>
+    <div className="m-5 pb-0 table-div">
+      <Search value={searchText} onChange={handleSearch} />
+      <Table
+        hover={false}
+        height={350}
+        data={getData(searchText ? "search" : "")}
+        sortColumn={sortColumn}
+        sortType={sortType}
+        onSortColumn={handleSortColumn}
+        loading={loading}
+      >
         {columns.map((column) => {
           if (noColumns.includes(column)) return;
           return (
             <Table.Column
-              flexGrow={1}
+              // flexGrow={column === "event_name" ? 2 : 0}
               key={column}
-              // sortable={true}
-              // width={100}
+              width={150}
+              sortable={
+                column === "day" ||
+                column === "contact" ||
+                column === "event_venue"
+                  ? false
+                  : true
+              }
+              fullText
             >
               <Table.HeaderCell
                 style={{
