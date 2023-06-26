@@ -6,11 +6,11 @@ function Sidebar() {
 
   return (
     <nav
-      className="col-lg-3 col-md-3 sidebar-nav p-0 sticky-top"
-      style={{ background: "#141728" }}
+      className="col-lg-2 col-md-2 sidebar-nav p-0 sticky-top"
+      style={{ background: "#e5e7eb" }}
     >
       <div className="d-flex align-items-center justify-content-between nav-header">
-        <h3 className="primary-header mb-0 px-lg-4 px-3 py-2 text-white mb-3 pt-4">
+        <h3 className="primary-header mb-0 px-lg-4 px-3 py-2 mb-3 pt-4">
           BottmzUP
         </h3>
         <button

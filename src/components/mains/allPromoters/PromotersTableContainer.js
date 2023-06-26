@@ -3,10 +3,10 @@ import axios from "axios";
 import { useState } from "react";
 import { Table } from "rsuite";
 import startCase from "lodash/startCase";
-import Search from "./Search";
+import SearchBar from "../SearchBar";
 
-function EventsTableContainer() {
-  const [allEvents, setAllEvents] = useState([]);
+function PromotersTableContainer() {
+  const [allPromoters, setAllPromoters] = useState([]);
   const [columns, setColumns] = useState([]);
   const [sortColumn, setSortColumn] = useState();
   const [sortType, setSortType] = useState();
@@ -18,7 +18,7 @@ function EventsTableContainer() {
 
   const events = async () => {
     return await axios.get(
-      `https://nightlife-2710.herokuapp.com/admin-events?admin_access_token=${accessToken}`
+      `https://nightlife-2710.herokuapp.com/admin_all_promoters?admin_access_token=${accessToken}`
     );
   };
 
@@ -26,7 +26,7 @@ function EventsTableContainer() {
     events()
       .then((response) => {
         // console.log(response?.data);
-        setAllEvents(response?.data);
+        setAllPromoters(response?.data);
         const keys = Object.keys(response?.data[0]);
         // setData(response?.data);
         setColumns(keys.map((key) => key));
@@ -41,7 +41,7 @@ function EventsTableContainer() {
 
   const getSortData = () => {
     if (sortColumn && sortType) {
-      return allEvents.sort((a, b) => {
+      return allPromoters.sort((a, b) => {
         let x = a[sortColumn];
         let y = b[sortColumn];
         if (sortColumn === "date") {
@@ -64,7 +64,7 @@ function EventsTableContainer() {
         }
       });
     }
-    return allEvents;
+    return allPromoters;
   };
 
   const handleSortColumn = (sortColumn, sortType) => {
@@ -76,22 +76,7 @@ function EventsTableContainer() {
     }, 500);
   };
 
-  const noColumns = [
-    "id",
-    "description",
-    "timings",
-    "genre",
-    "price_range",
-    "featuring",
-    "carousel",
-    "terms",
-    "images_url",
-    "created_at",
-    "created_by",
-    "updated_at",
-    "updated_by",
-    "status",
-  ];
+  const noColumns = ["promoter_name", "email_id", "num_event"];
 
   function handleSearch(e) {
     setSearchText(e.target.value);
@@ -100,11 +85,11 @@ function EventsTableContainer() {
   function getData(func) {
     if (func === "search") {
       if (searchText) {
-        return allEvents.filter((event) =>
-          event.event_name.toLowerCase().startsWith(searchText.toLowerCase())
+        return allPromoters.filter((event) =>
+          event.promoter_name.toLowerCase().startsWith(searchText.toLowerCase())
         );
       } else {
-        return allEvents;
+        return allPromoters;
       }
     }
 
@@ -113,7 +98,15 @@ function EventsTableContainer() {
 
   return (
     <div className="m-5 pb-0 table-div">
-      <Search value={searchText} onChange={handleSearch} />
+      <SearchBar
+        value={searchText}
+        placeholder={"Search promoter"}
+        onChange={handleSearch}
+      >
+        <button className="btn" style={{ background: "#e5e7eb" }}>
+          <i class="fa-solid fa-plus"></i> Add Promoter
+        </button>
+      </SearchBar>
       <Table
         hover={false}
         height={350}
@@ -124,12 +117,13 @@ function EventsTableContainer() {
         loading={loading}
       >
         {columns.map((column) => {
-          if (noColumns.includes(column)) return;
+          if (!noColumns.includes(column)) return;
           return (
             <Table.Column
               // flexGrow={column === "event_name" ? 2 : 0}
               key={column}
-              width={150}
+              // width={150}
+              flexGrow={1}
               sortable={
                 column === "day" ||
                 column === "contact" ||
@@ -141,8 +135,8 @@ function EventsTableContainer() {
             >
               <Table.HeaderCell
                 style={{
-                  background: "#f8fafc",
-                  color: "#334155",
+                  background: "#f3f4f6",
+                  color: "#374151",
                 }}
               >
                 {startCase(column)}
@@ -161,4 +155,4 @@ function EventsTableContainer() {
   );
 }
 
-export default EventsTableContainer;
+export default PromotersTableContainer;

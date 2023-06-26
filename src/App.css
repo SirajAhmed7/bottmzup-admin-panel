@@ -4,10 +4,12 @@
 * {
   font-family: "Poppins", sans-serif;
   font-weight: 400;
+  color: #374151;
 }
 
 .primary-header {
   font-family: "Righteous", cursive !important;
+  color: #1f2937;
 }
 
 input[type="password"]::-ms-reveal,
@@ -37,13 +39,17 @@ input::-webkit-inner-spin-button {
 }
 
 .nav-header {
-  background: #141728;
+  background: #e5e7eb;
   position: relative;
   z-index: 2;
 }
 
+.header {
+  color: #1f2937;
+}
+
 .tab-list {
-  background: #141728;
+  background: #e5e7eb;
   transition: transform 0.2s ease-out;
 }
 

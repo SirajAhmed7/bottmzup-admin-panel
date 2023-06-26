@@ -1,4 +1,4 @@
-import AllEventsMain from "./mains/AllEventsMain";
+import AllEventsMain from "./mains/allEvents/AllEventsMain";
 import Sidebar from "./Sidebar";
 
 function AdminAllEvents() {

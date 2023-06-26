@@ -8,7 +8,7 @@ function Tab(props) {
       style={{
         color: window.location.pathname === props.routeTo ? "white" : "white",
         backgroundColor:
-          window.location.pathname === props.routeTo && "#354054",
+          window.location.pathname === props.routeTo && "#d1d5db",
       }}
     >
       <span className="me-3">
