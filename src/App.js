@@ -11,6 +11,7 @@ import AdminAllEvents from "./components/AdminAllEvents";
 import AdminAllPromoters from "./components/AdminAllPromoters";
 import AdminPayments from "./components/AdminPayments";
 import { useState } from "react";
+import AdminEmail from "./components/AdminEmail";
 
 function App() {
   const [access_token, setAccessToken] = useState("");
@@ -37,6 +38,7 @@ function App() {
             element={<AdminAllPromoters />}
           />
           <Route exact path="/admin-payments" element={<AdminPayments />} />
+          <Route exact path="/admin-email" element={<AdminEmail />} />
         </Routes>
       </Router>
     </>

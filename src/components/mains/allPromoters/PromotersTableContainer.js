@@ -97,7 +97,7 @@ function PromotersTableContainer() {
   }
 
   return (
-    <div className="m-5 pb-0 table-div">
+    <div className="table-div">
       <SearchBar
         value={searchText}
         placeholder={"Search promoter"}

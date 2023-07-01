@@ -33,6 +33,7 @@ const TabsList = forwardRef((_, ref) => {
         routeTo="/admin-all-promoters"
       />
       <Tab name="Payments" icon="money-bill" routeTo="/admin-payments" />
+      <Tab name="Email" icon="envelope" routeTo="/admin-email" />
     </div>
   );
 });

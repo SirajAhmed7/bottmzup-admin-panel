@@ -5,10 +5,7 @@ function Sidebar() {
   const ref = useRef(null);
 
   return (
-    <nav
-      className="col-lg-2 col-md-2 sidebar-nav p-0 sticky-top"
-      style={{ background: "#e5e7eb" }}
-    >
+    <nav className="col-lg-2 col-md-2 sidebar-nav p-0 sticky-top bg-gray-200">
       <div className="d-flex align-items-center justify-content-between nav-header">
         <h3 className="primary-header mb-0 px-lg-4 px-3 py-2 mb-3 pt-4">
           BottmzUP

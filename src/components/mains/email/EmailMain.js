@@ -1,16 +1,17 @@
 import Header from "../../../common/Header";
 import MainContainer from "../../../common/MainContainer";
-import EventsTableContainer from "./EventsTableContainer";
+import EmailContainer from "./EmailContainer";
+import MailInput from "./MailInput";
 
-function AllEventsMain() {
+function EmailMain() {
   return (
     <main className="col-md-10 p-0 max-vh-100 overflow-auto">
-      <Header heading={"All Events"} />
+      <Header heading={"Email"} />
       <MainContainer>
-        <EventsTableContainer />
+        <EmailContainer />
       </MainContainer>
     </main>
   );
 }
 
-export default AllEventsMain;
+export default EmailMain;
