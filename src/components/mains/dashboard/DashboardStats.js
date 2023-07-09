@@ -1,5 +1,5 @@
 import axios from "axios";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Loading from "../../../common/Loading";
 
 function DashboardStats() {
@@ -62,11 +62,21 @@ function Stat({ title, num, color }) {
     //   : color === "blue"
     //   ? "from-sky-200 to-sky-300"
     //   : "from-rose-300 to-rose-400";
+    // color === "green"
+    //   ? "bg-green-300"
+    //   : color === "blue"
+    //   ? "bg-sky-300"
+    //   : "bg-rose-400";
     color === "green"
-      ? "bg-green-300"
+      ? "bg-green-400"
       : color === "blue"
-      ? "bg-sky-300"
+      ? "bg-sky-400"
       : "bg-rose-400";
+  // color === "green"
+  //   ? "from-green-400 to-green-500"
+  //   : color === "blue"
+  //   ? "from-sky-400 to-sky-500"
+  //   : "from-rose-400 to-rose-500";
 
   let icon;
 
@@ -92,7 +102,7 @@ function Stat({ title, num, color }) {
       <p className="text-base lg:text-xl font-medium mb-2 lg:mb-5">{title}</p>
       <p className="text-2xl lg:text-5xl font-bold">{num}</p>
       <i
-        class={`fa-solid ${icon} absolute right-4 md:right-7 top-2/4 text-3xl md:text-5xl lg:text-8xl -translate-y-1/2 text-gray-50 opacity-25`}
+        class={`fa-solid ${icon} absolute right-4 md:right-[5%] top-2/4 text-3xl md:text-5xl lg:text-8xl -translate-y-1/2 text-gray-50 opacity-25`}
       ></i>
     </div>
   );

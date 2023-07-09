@@ -4,8 +4,9 @@ import { useState } from "react";
 import { Table } from "rsuite";
 import startCase from "lodash/startCase";
 import SearchBar from "../SearchBar";
+import Modal from "../../../common/Modal";
 
-function EventsTableContainer() {
+function EventsTableContainer({ handleOpenModal }) {
   const [allEvents, setAllEvents] = useState([]);
   const [columns, setColumns] = useState([]);
   const [sortColumn, setSortColumn] = useState();
@@ -113,7 +114,11 @@ function EventsTableContainer() {
         placeholder={"Search event name"}
         onChange={handleSearch}
       >
-        <button className="btn" style={{ background: "#e5e7eb" }}>
+        <button
+          className="btn"
+          style={{ background: "#e5e7eb" }}
+          onClick={handleOpenModal}
+        >
           <i class="fa-solid fa-plus"></i> Add Event
         </button>
       </SearchBar>
