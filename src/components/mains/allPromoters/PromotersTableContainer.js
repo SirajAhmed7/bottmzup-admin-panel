@@ -5,7 +5,7 @@ import { Table } from "rsuite";
 import startCase from "lodash/startCase";
 import SearchBar from "../SearchBar";
 
-function PromotersTableContainer() {
+function PromotersTableContainer({ handleOpenModal }) {
   const [allPromoters, setAllPromoters] = useState([]);
   const [columns, setColumns] = useState([]);
   const [sortColumn, setSortColumn] = useState();
@@ -103,7 +103,11 @@ function PromotersTableContainer() {
         placeholder={"Search promoter"}
         onChange={handleSearch}
       >
-        <button className="btn" style={{ background: "#e5e7eb" }}>
+        <button
+          className="btn"
+          style={{ background: "#e5e7eb" }}
+          onClick={handleOpenModal}
+        >
           <i class="fa-solid fa-plus"></i> Add Promoter
         </button>
       </SearchBar>
