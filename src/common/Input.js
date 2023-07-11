@@ -48,11 +48,8 @@ export default function Input(props) {
               value={props.value}
               onBlur={props.onBlur}
               error={props.error}
-              className="form-control"
+              className="form-control border rounded-lg p-2"
               style={{
-                border: "2px solid black",
-                borderRadius: "10px",
-                padding: "0.5rem",
                 paddingLeft: props.iconLeft ? "38px" : null,
                 paddingRight: props.iconRight ? "38px" : null,
               }}
